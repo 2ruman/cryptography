@@ -3,7 +3,7 @@
  *
  *      Author  : Truman
  *      Contact : truman.t.kim@gmail.com
- *      Version : 0.1.0
+ *      Version : 0.1.1
  */
 
 #ifndef KDF_NIST_H_

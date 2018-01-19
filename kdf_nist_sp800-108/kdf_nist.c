@@ -79,6 +79,9 @@ int KDF_CTR_HAMC(uint8_t *Ko, size_t Ko_len,
         goto error;
     }
     memset(fixed_input_data, 0, fixed_input_data_len);
+    memcpy(fixed_input_data, Label, Label_len);
+    memcpy(fixed_input_data + Label_len + 1, Context, Context_len);
+    memcpy(fixed_input_data + Label_len + 1 + Context_len, &L, sizeof(L));
 
     /* Input Data : [i] || Label || 0x00 || Context || [L] */
     input_data_len = r + fixed_input_data_len;
