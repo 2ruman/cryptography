@@ -45,9 +45,9 @@ int main() {
     memset(Ko, 0, Ko_len);
     print_hex("Ko", Ko, Ko_len);
 
-    /* Use of KDF_CTR_HAMC_SHA256() function */
+    /* Use of KDF_CTR_HMAC_SHA256() function */
     IS_FAILED(
-            rc = KDF_CTR_HAMC_SHA256(Ko, Ko_len, Ki, Ki_len,
+            rc = KDF_CTR_HMAC_SHA256(Ko, Ko_len, Ki, Ki_len,
                                      (uint8_t *)Label, Label_len,
                                      (uint8_t *)Context, Context_len)) {
         goto error;
@@ -58,9 +58,9 @@ int main() {
     memset(Ko, 0, Ko_len);
     print_hex("Ko", Ko, Ko_len);
 
-    /* Use of KDF_CTR_HAMC_SHA512() function */
+    /* Use of KDF_CTR_HMAC_SHA512() function */
     IS_FAILED(
-            rc = KDF_CTR_HAMC_SHA512(Ko, Ko_len, Ki, Ki_len,
+            rc = KDF_CTR_HMAC_SHA512(Ko, Ko_len, Ki, Ki_len,
                                      (uint8_t *)Label, Label_len,
                                      (uint8_t *)Context, Context_len)) {
         goto error;

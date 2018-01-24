@@ -3,7 +3,7 @@
  *
  *      Author  : Truman
  *      Contact : truman.t.kim@gmail.com
- *      Version : 0.1.0
+ *      Version : 0.1.2
  */
 #include "kdf_nist.h"
 
@@ -15,31 +15,31 @@
 
 #include <openssl/hmac.h>
 
-int KDF_CTR_HAMC(uint8_t *Ko, size_t Ko_len,
+int KDF_CTR_HMAC(uint8_t *Ko, size_t Ko_len,
                         uint8_t *Ki, size_t Ki_len,
                         uint8_t *Label, size_t Label_len,
                         uint8_t *Context, size_t Context_len,
                         const EVP_MD *digest);
 
-int KDF_CTR_HAMC_SHA256(uint8_t *Ko, size_t Ko_len,
+int KDF_CTR_HMAC_SHA256(uint8_t *Ko, size_t Ko_len,
                         uint8_t *Ki, size_t Ki_len,
                         uint8_t *Label, size_t Label_len,
                         uint8_t *Context, size_t Context_len) {
-    return KDF_CTR_HAMC(Ko, Ko_len, Ki, Ki_len,
+    return KDF_CTR_HMAC(Ko, Ko_len, Ki, Ki_len,
                         Label, Label_len, Context, Context_len,
                         EVP_sha256());
 }
 
-int KDF_CTR_HAMC_SHA512(uint8_t *Ko, size_t Ko_len,
+int KDF_CTR_HMAC_SHA512(uint8_t *Ko, size_t Ko_len,
                         uint8_t *Ki, size_t Ki_len,
                         uint8_t *Label, size_t Label_len,
                         uint8_t *Context, size_t Context_len) {
-    return KDF_CTR_HAMC(Ko, Ko_len, Ki, Ki_len,
+    return KDF_CTR_HMAC(Ko, Ko_len, Ki, Ki_len,
                         Label, Label_len, Context, Context_len,
                         EVP_sha512());
 }
 
-int KDF_CTR_HAMC(uint8_t *Ko, size_t Ko_len,
+int KDF_CTR_HMAC(uint8_t *Ko, size_t Ko_len,
                         uint8_t *Ki, size_t Ki_len,
                         uint8_t *Label, size_t Label_len,
                         uint8_t *Context, size_t Context_len,
@@ -71,6 +71,9 @@ int KDF_CTR_HAMC(uint8_t *Ko, size_t Ko_len,
     uint32_t L = Ko_len * 8;
     uint32_t n = (L < h) ? 1 : L/h;
     uint32_t r = sizeof(i);
+
+    /* Initialise */
+    fixed_input_data = input_data = K_i = result_i = NULL;
 
     /* Fixed Input Data : Label || 0x00 || Context || [L] */
     fixed_input_data_len = Label_len + 1 + Context_len + sizeof(L);

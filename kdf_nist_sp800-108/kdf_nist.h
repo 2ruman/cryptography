@@ -3,7 +3,7 @@
  *
  *      Author  : Truman
  *      Contact : truman.t.kim@gmail.com
- *      Version : 0.1.1
+ *      Version : 0.1.2
  */
 
 #ifndef KDF_NIST_H_
@@ -22,12 +22,12 @@
 
 // #define DIAGNOSTICS
 
-int KDF_CTR_HAMC_SHA256(uint8_t *Ko, size_t Ko_len,
+int KDF_CTR_HMAC_SHA256(uint8_t *Ko, size_t Ko_len,
                         uint8_t *Ki, size_t Ki_len,
                         uint8_t *Label, size_t Label_len,
                         uint8_t *Context, size_t Context_len);
 
-int KDF_CTR_HAMC_SHA512(uint8_t *Ko, size_t Ko_len,
+int KDF_CTR_HMAC_SHA512(uint8_t *Ko, size_t Ko_len,
                         uint8_t *Ki, size_t Ki_len,
                         uint8_t *Label, size_t Label_len,
                         uint8_t *Context, size_t Context_len);
