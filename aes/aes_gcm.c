@@ -3,7 +3,7 @@
  *
  *      Author  : Truman
  *      Contact : truman.t.kim@gmail.com
- *      Version : 0.1.0
+ *      Version : 0.1.1
  */
 #include "aes.h"
 
@@ -92,18 +92,18 @@ int aes_gcm_encrypt(uint8_t *plaintext, size_t plaintext_len,
 #ifdef DIAGNOSTICS
         printf("updated_len : %d\n", updated_len);
 #endif
-        /* Finalize encryption */
+        /* Finalise encryption */
         if (!EVP_EncryptFinal_ex(ctx, ciphertext + ciphertext_len, &updated_len)) {
-            handle_errors("Error occurred while finalization");
+            handle_errors("Error occurred while finalisation");
             break;
         }
         ciphertext_len += updated_len;
 #ifdef DIAGNOSTICS
         printf("updated_len : %d\n", updated_len);
 #endif
-        /* Extract authentication tag */
+        /* Get authentication tag */
         if (!EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_GET_TAG, tag_len, tag)) {
-            handle_errors("Error occurred while extract auth tag");
+            handle_errors("Error occurred while get auth tag");
             break;
         }
 
@@ -169,7 +169,7 @@ int aes_gcm_decrypt(uint8_t *ciphertext, size_t ciphertext_len,
 #endif
         /* Decrypt ciphertext */
         if (!EVP_DecryptUpdate(ctx, plaintext, &updated_len, ciphertext, ciphertext_len)) {
-            handle_errors("Error occurred while encryption");
+            handle_errors("Error occurred while decryption");
             break;
         }
         plaintext_len = updated_len;
@@ -182,15 +182,16 @@ int aes_gcm_decrypt(uint8_t *ciphertext, size_t ciphertext_len,
             break;
         }
 
-        /* Finalize decryption */
+        /* Finalise decryption */
         if (!EVP_DecryptFinal_ex(ctx, plaintext + plaintext_len, &updated_len)) {
-            handle_errors("Error occurred while finalization");
+            handle_errors("Error occurred while finalisation");
             break;
         }
         plaintext_len += updated_len;
 #ifdef DIAGNOSTICS
         printf("updated_len : %d\n", updated_len);
 #endif
+        /* Return value is the length of plaintext */
         ret = plaintext_len;
     } while(0);
 
