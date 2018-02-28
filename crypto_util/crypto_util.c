@@ -3,7 +3,7 @@
  *
  *      Author  : Truman
  *      Contact : truman.t.kim@gmail.com
- *      Version : 0.1.0
+ *      Version : 0.1.1
  */
 
 #include "crypto_util.h"
@@ -14,6 +14,18 @@
 #include <stdlib.h>
 
 #include <openssl/rand.h>
+
+const uint8_t *get_asc_12() {
+    return asc_12_bytes;
+}
+
+const uint8_t *get_asc_16() {
+    return asc_16_bytes;
+}
+
+const uint8_t *get_asc_24() {
+    return asc_24_bytes;
+}
 
 const uint8_t *get_asc_32() {
     return asc_32_bytes;
