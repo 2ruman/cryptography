@@ -3,7 +3,7 @@
  *
  *      Author  : Truman
  *      Contact : truman.t.kim@gmail.com
- *      Version : 0.2.0
+ *      Version : 0.2.1
  */
 #include "kdf_nist.h"
 
@@ -244,7 +244,7 @@ int KDF_CTR_HMAC(uint8_t *Ko, size_t L,
                     goto error;
             }
         } else {
-            memcpy(input_data, &i, r);
+            memcpy(input_data, &i, rlen);
         }
         if (!HMAC_Update(&hctx_tpl, input_data, input_data_len)) {
             KDF_LOGE("Failed to update message to hamc context\n");
