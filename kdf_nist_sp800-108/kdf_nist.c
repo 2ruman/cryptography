@@ -15,7 +15,7 @@
 
 #include <openssl/hmac.h>
 
-int KDF_CTR_HMAC_SHA256(uint8_t *Ko, size_t L,
+int KDF_CTR_HMAC_SHA256(uint8_t *Ko, uint32_t L,
                         uint8_t *Ki, size_t Ki_len,
                         uint8_t *Label, size_t Label_len,
                         uint8_t *Context, size_t Context_len) {
@@ -26,7 +26,7 @@ int KDF_CTR_HMAC_SHA256(uint8_t *Ko, size_t L,
                                 KDF_PRF_HMAC_SHA256, KDF_NONE));
 }
 
-int KDF_CTR_HMAC_SHA512(uint8_t *Ko, size_t L,
+int KDF_CTR_HMAC_SHA512(uint8_t *Ko, uint32_t L,
                         uint8_t *Ki, size_t Ki_len,
                         uint8_t *Label, size_t Label_len,
                         uint8_t *Context, size_t Context_len) {
@@ -37,7 +37,7 @@ int KDF_CTR_HMAC_SHA512(uint8_t *Ko, size_t L,
                                 KDF_PRF_HMAC_SHA512, KDF_NONE));
 }
 
-int KDF_CTR_HMAC(uint8_t *Ko, size_t L,
+int KDF_CTR_HMAC(uint8_t *Ko, uint32_t L,
                         uint8_t *Ki, size_t Ki_len,
                         uint8_t *Label, size_t Label_len,
                         uint8_t *Context, size_t Context_len,
@@ -49,7 +49,7 @@ int KDF_CTR_HMAC(uint8_t *Ko, size_t L,
     int ext, cloc = ext
              = GET_CFG_EXT(cfg);
 #ifdef DIAGNOSTICS
-    KDF_LOGD("L               : %zu\n", L);
+    KDF_LOGD("L               : %d\n", L);
     KDF_LOGD("Ki_len          : %zu\n", Ki_len);
     KDF_LOGD("Label_len       : %zu\n", Label_len);
     KDF_LOGD("Context_len     : %zu\n", Context_len);
