@@ -1,5 +1,5 @@
 
-# Precaution
+# :warning: Precaution
 
 #### The intellectual property rights of the source codes of LEA(Lightweight Encryption Algorithm) are belong to NSRI(National Security Research Institute), hence before using/modifying/distributing LEA for commercial purposes, you must contact and consult with NSR(leacipher@nsr.re.kr) or KISA(Korea Internet Security Agency, https://www.kisa.or.kr/) first.
 
