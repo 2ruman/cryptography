@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">KCA Android</string>
+    <string name="plaintext">Plaintext</string>
+    <string name="ciphertext">Ciphertext</string>
+    <string name="encrypt">Encrypt</string>
+    <string name="decrypt">Decrypt</string>
+    <string name="message">Message</string>
+    <string name="hash">Hash</string>
+    <string name="rng">RNG</string>
+    <string name="status">Status</string>
+</resources>
